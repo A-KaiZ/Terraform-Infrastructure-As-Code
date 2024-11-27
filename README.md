@@ -1,6 +1,37 @@
 ## **Getting Started**
 
-This project demonstrates how to provision a network infrastructure on OpenStack using Terraform. The infrastructure sets up three virtual machines with pre-configured networking, ready to be used for a Kubernetes cluster or similar environments. 
+This project demonstrates how to provision a network infrastructure on OpenStack using Terraform. The infrastructure sets up three virtual machines with pre-configured networking, ready to be used for a Kubernetes cluster or similar environments. The repository emphasizes foundational DevOps principles, automation via custom scripts, and a flexible approach to infrastructure as code.
+
+Additionally, I have created some custom automation scripts which handles some important infrastructure configurations. This project is meant as a learning exercise for cloud infrastructure and operational deployment. The custom scripts may not fully work as intended, but does what its supposed to if you follow the prompts that are given in the CLI when you execute Terraform commands. Please create a pull request if you have any contribution ideas to better this workflow. 
+
+## **Key Features**
+- Automated provisioning of **three VMs** on OpenStack.
+- Pre-configured networking and floating IPs for external connectivity.
+- Custom shell scripts for workspace validation and keypair management.
+- Flexible configurations for Kubernetes deployment.
+
+## **Custom Scripts**
+
+The repository includes several custom scripts executed automatically during Terraform commands (`apply`, `destroy`, `plan`, and `refresh`). These scripts are meant for managing the infrastructure safely and improving workflows:
+
+### **Scripts Overview**
+1. **`check_keypair.sh`**
+   - Validates the existence of an SSH keypair in OpenStack before creating a new one.
+   - Prevents duplicate keypair creation, ensuring streamlined access management.
+   - Integrated within Terraform to manage two seperate keypairs, e.g. student or teacher. 
+
+2. **`check_workspace.sh`**
+   - Verifies the active state of the Terraform workspace to prevent accidental modifications.
+   - Uses a marker file to indicate the readiness of the workspace.
+   - Ensures that infrastructure changes occur only when the workspace is in the correct state.
+
+3. **`manage_marker.sh`**
+   - Manages the creation and removal of a marker file that signals active infrastructure.
+   - Used alongside `check_workspace.sh` for safe infrastructure modifications.
+
+4. **`openstack_credentials.sh`**
+   - Loads OpenStack credentials securely from a `.env` file.
+   - Simplifies credential management by externalizing sensitive details.
 
 ---
 
@@ -87,13 +118,19 @@ terraform validate
 
 ---
 
-### Step 5: Deploy the Infrastructure
-
-1. Deploy the infrastructure:
+### **Step 5: Deploy the Infrastructure**
+Run the following commands in sequence:
+1. **Plan Infrastructure**
+   ```bash
+   terraform plan
+   ```
+2. **Apply Changes**
    ```bash
    terraform apply
    ```
-2. Review the changes and type `yes` to confirm.
+   The custom scripts will automatically execute, managing keypairs and workspace markers. Please read the prompts carefully, and specify the terraform command used.
+   
+4. Review the changes and type `yes` to confirm.
 
 ---
 
@@ -112,6 +149,14 @@ Once deployed, Terraform will output the created resources. Ensure everything is
 - **Credentials:** Credentials are securely managed using a `.env` file and are not hardcoded for security reasons. Always keep the `.env` file private and excluded from version control.
 - **SSH Keys:** Ensure your public SSH keys are correctly added to `variables.tf` to access the instances.
 - **OpenStack Authentication:** If there are any issues, confirm your OpenStack credentials and API access using the OpenStack CLI (`openstack server list`).
+
+---
+
+## **Learning Outcomes**
+- **Infrastructure as Code (IaC):** Streamline cloud resource provisioning using Terraform.
+- **Custom Automation:** Enhance operational workflows with custom scripts.
+- **Cloud Networking:** Configure secure and efficient networking for multi-node setups.
+- **Kubernetes Ready:** Prepare infrastructure for Kubernetes cluster installation and management.
 
 ---
 
