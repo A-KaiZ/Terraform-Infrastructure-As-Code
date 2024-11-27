@@ -16,5 +16,3 @@ openstack_creds.sh
 
 # Ignore marker files
 .applied_default
-
-.gitignore
