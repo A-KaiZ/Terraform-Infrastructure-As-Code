@@ -8,9 +8,6 @@
 # Crash log files
 crash.log
 
-# OpenStack credentials
-openstack_creds.sh
-
 # Terraform lock files
 *.lock.hcl
 
