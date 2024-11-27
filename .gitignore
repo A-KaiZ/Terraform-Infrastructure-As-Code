@@ -13,3 +13,6 @@ crash.log
 
 # Ignore marker files
 .applied_default
+
+# Keep sensetive information locally
+.env
