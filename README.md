@@ -1,6 +1,6 @@
 ## **Getting Started**
 
-This project demonstrates how to provision a Kubernetes-ready network infrastructure on OpenStack using Terraform. The setup includes three virtual machines with pre-configured networking, ready for manual Kubernetes installation or other cloud-native configurations. It showcases foundational DevOps principles, automation through custom scripts, and the flexibility of Infrastructure as Code (IaC).
+This project demonstrates how to provision a Kubernetes-ready network infrastructure on OpenStack using Terraform. The setup includes three virtual machines with pre-configured networking, ready for manual Kubernetes installation or other cloud-native configurations. It showcases foundational DevOps principles, automation through custom scripts, and the flexibility of Infrastructure as Code (IaC). Make sure you have access to your own OpenStack credentials if you want to fork this project. 
 
 Custom automation scripts are included to handle essential infrastructure tasks such as keypair validation, workspace state management, and environment configuration. These scripts are executed automatically during Terraform commands like apply, destroy, plan, and refresh. While primarily developed for educational purposes, they serve as an example of integrating automation into infrastructure workflows. Contributions are welcome—feel free to submit a pull request to improve the project!
 
